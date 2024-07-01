@@ -17,12 +17,13 @@ The purpose of our application is to satisfy the needs of users in the exact and
 What is the best anallain?
 Our application differs in its simplicity of use. In the difference from many other applications that require the entry of each ingredient manually, our application analyzes the photo and determines the food products on it, and then uses the calorie database to calculate the total number of calories. This makes the process much faster and more convenient for the user
 
-
+ 
 Requirements
  iOS 11.0 or higher
  Android 5.0 (API LEVEL 21) or higher
  Camera of a device for photographing dishes
  Internet connection to download the database of food and calorie products
+
 
 Installation
 
