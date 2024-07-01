@@ -1,11 +1,10 @@
-import 'package:contrast_shower_app/pages/infoinputpage.dart';
-import 'package:contrast_shower_app/service/hive_provider.dart';
+import 'package:calories_tracker/pages/infoinputpage.dart';
+import 'package:calories_tracker/service/hive_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
-
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   runApp(const MyApp());
@@ -23,12 +22,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         MultiProvider(providers: [
-            ChangeNotifierProvider(
-            create: (context) => DataProvider()
-            ),
-          ]
-        )
+        MultiProvider(providers: [
+          ChangeNotifierProvider(create: (context) => DataProvider()),
+        ])
       ],
       child: const MaterialApp(
         home: HomePage(),

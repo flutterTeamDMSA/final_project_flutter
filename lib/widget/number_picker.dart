@@ -1,4 +1,4 @@
-import 'package:contrast_shower_app/globaL/const.dart';
+import 'package:calories_tracker/globaL/const.dart';
 import 'package:flutter/material.dart';
 
 class NumberPicker extends StatelessWidget {
@@ -7,7 +7,8 @@ class NumberPicker extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;
 
-  const NumberPicker({super.key, 
+  const NumberPicker({
+    super.key,
     required this.minValue,
     required this.maxValue,
     required this.value,
@@ -19,15 +20,24 @@ class NumberPicker extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          icon: Icon(Icons.arrow_drop_up,color: white,),
+          icon: Icon(
+            Icons.arrow_drop_up,
+            color: white,
+          ),
           onPressed: value < maxValue ? () => onChanged(value + 1) : null,
         ),
         Text(
-          value.toString().padLeft(2, '0',),
+          value.toString().padLeft(
+                2,
+                '0',
+              ),
           style: wf24w600,
         ),
         IconButton(
-          icon: Icon(Icons.arrow_drop_down,color: white,),
+          icon: Icon(
+            Icons.arrow_drop_down,
+            color: white,
+          ),
           onPressed: value > minValue ? () => onChanged(value - 1) : null,
         ),
       ],

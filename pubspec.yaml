@@ -1,4 +1,4 @@
-name: contrast_shower_app
+name: calories_tracker
 description: "A new Flutter module project."
 
 # The following defines the version and build number for your application.
@@ -31,6 +31,7 @@ dependencies:
   provider: ^6.1.2
   hive_flutter: ^1.1.0
   camera: ^0.11.0+1
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

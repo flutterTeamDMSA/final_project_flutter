@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:contrast_shower_app/models/dataModel.dart';
+import 'package:calories_tracker/models/dataModel.dart';
 
 class DataProvider extends ChangeNotifier {
   late List<DataModel> _dataList = [];
@@ -11,19 +11,23 @@ class DataProvider extends ChangeNotifier {
   Future<void> loadDataFromHive() async {
     var box = await Hive.openBox('history');
     List<dynamic> dataListFromBox = box.get('dataList', defaultValue: []);
-    
-    _dataList = dataListFromBox.map((data) => DataModel(
-      index: data['index'] ?? 0,
-      name: data['name'] ?? '',
-      proteins: data['proteins'] ?? 0,
-      fats: data['fats'] ?? 0,
-      carbohydrates: data['carbohydrates'] ?? 0,
-      caloris: data['caloris'] ?? 0,
-      date: data['date'] != null ? DateTime.parse(data['date']) : DateTime.now(),
-    )).toList();
+
+    _dataList = dataListFromBox
+        .map((data) => DataModel(
+              index: data['index'] ?? 0,
+              name: data['name'] ?? '',
+              proteins: data['proteins'] ?? 0,
+              fats: data['fats'] ?? 0,
+              carbohydrates: data['carbohydrates'] ?? 0,
+              caloris: data['caloris'] ?? 0,
+              date: data['date'] != null
+                  ? DateTime.parse(data['date'])
+                  : DateTime.now(),
+            ))
+        .toList();
 
     _dataList.sort((a, b) => b.date.compareTo(a.date));
-    
+
     notifyListeners();
   }
 
@@ -56,11 +60,12 @@ class DataProvider extends ChangeNotifier {
     return date.toIso8601String().split('T').first;
   }
 
-  Future<void> saveDataToHive(String name, int proteins,int fats, int carbohydrates, int caloris) async {
+  Future<void> saveDataToHive(String name, int proteins, int fats,
+      int carbohydrates, int caloris) async {
     var box = await Hive.openBox('history');
-    
+
     List<dynamic> dataListFromBox = box.get('dataList', defaultValue: []);
-    
+
     int newIndex = _dataList.isNotEmpty ? _dataList.last.index + 1 : 0;
     DateTime currentDate = DateTime.now();
 
@@ -78,14 +83,15 @@ class DataProvider extends ChangeNotifier {
 
     await box.close();
 
-    await loadDataFromHive(); 
+    await loadDataFromHive();
   }
 
-  Future<void> updateDataInHive(int index, String name, int proteins, int fats, int carbohydrates, int caloris) async {
+  Future<void> updateDataInHive(int index, String name, int proteins, int fats,
+      int carbohydrates, int caloris) async {
     var box = await Hive.openBox('history');
-    
+
     List<dynamic> dataListFromBox = box.get('dataList', defaultValue: []);
-    
+
     for (int i = 0; i < dataListFromBox.length; i++) {
       if (dataListFromBox[i]['index'] == index) {
         dataListFromBox[i] = {
