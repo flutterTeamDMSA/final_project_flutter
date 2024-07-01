@@ -2,7 +2,7 @@ Description
 
 Application for calculating calories based on a photograph of food. Just take a picture of your meal, and the application with the implemented AI will determine the overall information about your dish: name, calories, proteins, fats, carbohydrates.
 
-Functionality
+Functionality:
  Photography: The application allows the user to photograph his dish using the device camera.
  Image analysis: the application analyzes the photo, determines the food in the image and their quantity.
  Caloria calculation: the application uses LLAMA Model to identify information about the dish.
