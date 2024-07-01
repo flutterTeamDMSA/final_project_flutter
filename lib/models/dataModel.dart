@@ -16,5 +16,4 @@ class DataModel {
     required this.caloris,
     required this.date,
   });
- 
 }

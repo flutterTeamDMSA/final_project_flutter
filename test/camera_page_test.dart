@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 void main() {
   testWidgets('CameraPage shows camera preview', (WidgetTester tester) async {
     // Mock DataProvider
-    await tester.pumpWidget(
+    await tester.pumpWidget( 
       ChangeNotifierProvider<DataProvider>(
         create: (context) => DataProvider(),
         child: MaterialApp(
