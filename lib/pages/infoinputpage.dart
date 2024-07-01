@@ -182,8 +182,7 @@ class _CameraPageState extends State<CameraPage> {
           _fatsController.text = jsonResponse['fats'].toString();
           _carbohydratesController.text =
               jsonResponse['carbohydrates'].toString();
-          _caloriesController.text =
-              jsonResponse['calories'].toString(); // исправлено
+          _caloriesController.text = jsonResponse['calories'].toString();
         });
         return true;
       } else {
@@ -206,8 +205,7 @@ class _CameraPageState extends State<CameraPage> {
   void _showErrorDialog(BuildContext context, String message) {
     showDialog<void>(
       context: context,
-      barrierDismissible:
-          false, // Установите true, чтобы закрыть диалог нажатием вне его
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Ошибка'),
@@ -225,8 +223,7 @@ class _CameraPageState extends State<CameraPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        HomePage(), // Замените на ваш виджет домашней страницы
+                    builder: (context) => HomePage(),
                   ),
                 );
               },
@@ -248,13 +245,12 @@ class _CameraPageState extends State<CameraPage> {
 
                   try {
                     bool res = await _sendImage();
-                    Navigator.of(context).pop(); // Закрыть диалог загрузки
+                    Navigator.of(context).pop();
                     if (res) {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              HomePage(), // Замените на ваш виджет домашней страницы
+                          builder: (context) => HomePage(),
                         ),
                       );
                       _showinfodialog(context);
@@ -263,8 +259,7 @@ class _CameraPageState extends State<CameraPage> {
                           context, 'Не удалось загрузить изображение');
                     }
                   } catch (e) {
-                    Navigator.of(context)
-                        .pop(); // Закрыть диалог загрузки в случае ошибки
+                    Navigator.of(context).pop();
                     _showErrorDialog(context, 'Произошла ошибка: $e');
                   }
                 }
@@ -278,8 +273,7 @@ class _CameraPageState extends State<CameraPage> {
 
   Future<bool> _sendImage() async {
     if (_imageData != null) {
-      String url =
-          'http://127.0.0.1:5000/upload'; // Замените на ваш URL сервера
+      String url = 'http://127.0.0.1:5000/upload';
       return await _uploadImage(_imageData!, url);
     }
     return false;
@@ -459,7 +453,12 @@ void _showinfodialog(BuildContext context) {
                               int.parse(_fatsController.text),
                               int.parse(_carbohydratesController.text),
                               int.parse(_caloriesController.text));
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      );
                       _nameController.text = '';
                       _proteinsController.text = '';
                       _fatsController.text = '';
